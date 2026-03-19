@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos</title>
+  </head>
+  <body>
+    <h1>Bem-vindo a tela de Produtos</h1>
+    <hr />
+    <h3>Confira nossos produtos</h3>
+    <!--Exibindo uma variavel Javascript dentro do html-->
+    <!--Comentario no EJS <# %>-->
+
+    <!-- Percorrendo o vetor através do forEach -->
+    <% listaProdutos.forEach(function(produto) { %>
+      <p>
+        <a href="/produtos/<%= produto %>">
+
+        <%= produto %>   
+
+        </a>
+      </p>
+  <% }) %>
+
+    <p><a href="/">Voltar</a></p>
+  </body>
+</html>

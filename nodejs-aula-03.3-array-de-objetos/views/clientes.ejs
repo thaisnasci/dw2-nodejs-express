@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes</title>
+  </head>
+  <body>
+    <h1>Bem-vindo a Tela de Clientes!</h1>
+    <hr />
+      <!-- Percorrendo o vetor através do forEach -->
+    <% listaClientes.forEach(function(cliente) { %>
+      <p>
+        <a href="/clientes/<%= cliente %>">
+
+        <%= cliente %>   
+
+        </a>
+      </p>
+  <% }) %>
+
+    <p><a href="/">Voltar para pagina inicial</a></p>
+  </body>
+</html>

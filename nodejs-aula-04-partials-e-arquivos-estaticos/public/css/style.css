@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    line-height: 30px;
+}
+
+header{
+    background-color: #161616;
+}
+
+header h1{
+    color: #ffffff;
+    text-align: center;
+}
+main{
+    min-height: 100vh;
+}
+footer{
+    background-color: #161616;
+}
+footer p{
+    color: #ffffff;
+    text-align: center;
+}

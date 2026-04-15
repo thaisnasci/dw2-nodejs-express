@@ -1,0 +1,67 @@
+<%- include ('partials/header.ejs') %>
+    <%- include ('partials/navbar.ejs') %>
+
+<!-- FORMULARIO DE CADASTRO -->
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Cadastrar Cliente</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="/clientes/cadastrar" method="POST">
+                            <label form="Nome do Cliente:"></label>
+                            <input type="text" name="nome" placeholder="Insira o nome do cliente" class="form-control" required>
+
+                            <label form="CPF Cliente:"></label>
+                            <input type="text" name="cpf" placeholder="Insira o CPF cliente" class="form-control" required>
+
+
+                            <label form="Endereço do Cliente:"></label>
+                            <input type="text" name="endereco" placeholder="Insira o endereço do cliente" class="form-control" required>
+                            <br>
+                            <!-- Botôes-->
+                             <button type="submit" class="btn btn-sucess">Cadastrar</button>
+                              <button type="reset" class="btn btn-danger">Limpar</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Clientes</h1>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nome:</th>
+                                <th>CPF:</th>
+                                <th>Endereço:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% clientes.forEach(cliente=> { %>
+                                <tr>
+                                    <td><img src="imgs/avatar.png" width="30px"></td>
+                                    <td>
+                                        <%= cliente.nome %>
+                                    </td>
+                                    <td>
+                                        <%= cliente.cpf %>
+                                    </td>
+                                    <td>
+                                        <%= cliente.endereco %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <%- include ('partials/footer.ejs') %>

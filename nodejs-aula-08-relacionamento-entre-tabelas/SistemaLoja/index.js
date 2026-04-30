@@ -8,39 +8,50 @@ import ProdutoController from "./controllers/ProdutoController.js";
 import PedidoController from "./controllers/PedidoController.js";
 // Importando o arquivo de conexão com o banco
 import connection from "./config/sequelize-config.js";
+// Importando os Models
 import Cliente from "./models/Cliente.js";
 import Pedido from "./models/Pedido.js";
+import Produto from "./models/Produto.js";
+
+// Importando as Associações
 import associations from "./config/associations.js";
 
-
 // Realizar a conexão com o banco de dados
-connection.authenticate().then(()=>{
-  console.log("Conexão com o banco de dados realizada com sucesso!");
-}).catch(error => {
-  console.log(`Ocorreu um erro ao se conectar ao banco. ${error}`);
-});
+connection
+  .authenticate()
+  .then(() => {
+    console.log("Conexão com o banco de dados realizada com sucesso!");
+  })
+  .catch((error) => {
+    console.log(`Ocorreu um erro ao se conectar ao banco. ${error}`);
+  });
 
 // Criando o banco de dados (somente se ainda não existir)
-connection.query("create database if not exists loja_relacional")
-.then(()=>{
-  console.log("O banco de dados foi criado");
-}).catch((error)=>{
-  console.log(`Ocorreu um erro ao criar o banco de dados. Erro: ${error}`);
-});
+connection
+  .query("create database if not exists loja_relacional;")
+  .then(() => {
+    console.log("O banco de dados foi criado");
+  })
+  .catch((error) => {
+    console.log(`Ocorreu um erro ao criar o banco de dados. Erro: ${error}`);
+  });
 
-//Invocando a funcao que cria as associacoes
+// Invocando a função que cria as associações
 associations();
-//Sincronizando os model de cliente e pedido
-Promise.all([
-  Cliente.sync({force:false}),
-  Pedido.sync({force:true})
-]
-).then(()=> {
-  console.log("Entidades criadas e relacionadas com sucesso!")
-}).catch(error => {
-  console.log("Ocorreu um erro ao sincronizar os Models." + error);
-});
 
+// Sincronizando os Models de Cliente e Pedido
+// Tranformando as funções em PROMESSAS
+Promise.all([
+  Cliente.sync({ force: false }),
+  Pedido.sync({ force: false }),
+  Produto.sync({ force: false }),
+])
+  .then(() => {
+    console.log("Entidades criadas e relacionadas com sucesso!");
+  })
+  .catch((error) => {
+    console.log("Ocorreu um erro ao sincronizar os Models." + error);
+  });
 
 // Iniciando o Express
 const app = express();
@@ -49,7 +60,7 @@ app.set("view engine", "ejs");
 // Define o uso da pasta "public" para uso de arquivos estáticos
 app.use(express.static("public"));
 // Configurando o express para aceitar dados vindo de formulários
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }));
 
 // Ativando o uso das ROTAS
 app.use("/", ClienteController);

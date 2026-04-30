@@ -38,7 +38,7 @@ router.post("/clientes/cadastrar", (req,res) => {
     res.redirect("/clientes")
     // Falha na promessa
   }).catch(error =>{
-    console.log("Ocorreu um erro ao cadastrar o cliente."+ error)
+    console.log("Ocorreu um erro ao cadastrar o cliente: "+ error)
   });
 })
 
@@ -73,29 +73,26 @@ router.get("/clientes/editar/:id",(req,res) => {
   });
 });
 
-//Rota de alteração de cliente
-router.post("/clientes/alterar",(req,res) => {
-  // Capturando os dados do formulário
-  const id = req.body.id;
+// ROTA DE ALTERAÇÂO DE CLIENTE
+router.post("/clientes/alterar",(req,res)=>{
+  // Coletando os dados do formulário
   const nome = req.body.nome;
-  const cpf = req.body.cpf;
+  const cpf = req.body.nome;
   const endereco = req.body.endereco;
+  const id = req.body.id;
 
-  // Atualizando o cliente no banco
-  Cliente.update({
-    nome: nome,
-    cpf: cpf,
-    endereco: endereco
-  }, {
-    where: {
-      id: id
-    }
-  }).then(() => {
-    res.redirect("/clientes");
-  }).catch(error => {
-    console.log("Ocorreu um erro ao alterar o cliente." + error);
-  });
-});
+  // Alterando o Cliente no banco
+  Cliente.update(
+    {
+      nome: nome,
+      cpf: cpf,
+      endereco: endereco,
+    },
+    {where: {id: id}}
+  ).then(()=>{
+    res.redirect("/clientes")
+  })
+})
 
 // Exportando o módulo para usá-lo em outro arquivo
 export default router;

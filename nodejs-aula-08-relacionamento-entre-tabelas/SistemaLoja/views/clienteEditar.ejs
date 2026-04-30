@@ -10,7 +10,7 @@
             <hr>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="/clientes/alterar" method="POST">
                 <label>Nome do cliente:</label>
                 <input type="text" name="nome" class="form-control" value="<%= cliente.nome%>">
                 
@@ -19,6 +19,8 @@
                 <label>Endereço do cliente:</label>
                 <input type="text" name="endereco" class="form-control"value="<%= cliente.endereco%>">
                 <br>
+                <!-- Input escondida para armazenar o ID do cleinte -->
+                <input type="hidden" name="id" value="<%= cliente.id %>">
                 <!-- Botão de enviar -->
                 <input type="submit" value="Alterar" class="btn btn-warning">
                 <!-- Botão de limpar -->

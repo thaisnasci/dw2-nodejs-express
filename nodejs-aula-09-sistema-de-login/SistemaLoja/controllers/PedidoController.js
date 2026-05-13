@@ -5,6 +5,7 @@ const router = express.Router();
 import Pedido from "../models/Pedido.js";
 import Cliente from "../models/Cliente.js";
 
+import Auth from "../middlewares/auth.js";
 // ROTA PEDIDOS
 router.get("/pedidos", function (req, res) {
   // Fazendo o INNER JOIN para trazer as informações do

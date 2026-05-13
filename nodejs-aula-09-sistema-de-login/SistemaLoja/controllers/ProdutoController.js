@@ -1,8 +1,10 @@
 import express from "express";
 
+
 const router = express.Router();
 
 import Produto from "../models/Produto.js";
+import Auth from "../middlewares/auth.js";
 // ROTA PRODUTOS
 router.get("/produtos", function (req, res) {
   Produto.findAll()

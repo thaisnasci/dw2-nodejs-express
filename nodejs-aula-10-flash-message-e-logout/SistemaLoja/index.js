@@ -1,6 +1,8 @@
 // Importando o Express
 // const express = require("express")
 import express from "express";
+// Importando o express Flash
+import flash from "express-flash";
 
 // Importando o Controller de Cliente (onde estão as rotas)
 // ClienteController
@@ -32,7 +34,7 @@ import Usuario from "./models/Usuario.js";
 import associations from "./config/associations.js";
 
 // Importando o Middleware de Autenticação
-import Auth from "./middlewares/Auth.js"
+import Auth from "./middlewares/Auth.js";
 
 // Realizando a conexão com o banco de dados
 connection
@@ -69,6 +71,9 @@ Promise.all([Cliente.sync({ force: false }), Pedido.sync({ force: false })])
 
 // Iniciando o Express
 const app = express();
+
+// Configurando o express-flash
+app.use(flash());
 // Define o EJS como Renderizador de páginas
 app.set("view engine", "ejs");
 // Define o uso da pasta "public" para uso de arquivos estáticos
@@ -94,7 +99,10 @@ app.use("/", UsuarioController);
 
 // ROTA PRINCIPAL
 app.get("/", Auth, function (req, res) {
-  res.render("index");
+  res.render("index", {
+    // Coletando a flash message
+    messages: req.flash(),
+  });
 });
 
 // INICIA O SERVIDOR NA PORTA 8080

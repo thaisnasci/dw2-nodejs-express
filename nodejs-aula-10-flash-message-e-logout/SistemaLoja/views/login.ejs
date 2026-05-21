@@ -1,6 +1,14 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/navbar.ejs') %>
 
+<!-- Verificando se há alertas e exibindo -->
+        <% if (messages.danger) { %>
+            <div class="alert alert-danger alert-dismissible fade show mx-4">
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+                <%= messages.danger %>
+            </div>
+            <% } %>
+
 <div class="container col-4">
     <div class="card mt-4">
         <div class="card-header">

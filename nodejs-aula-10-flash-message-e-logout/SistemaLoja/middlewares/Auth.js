@@ -7,7 +7,7 @@ function Auth(req, res, next) {
   } else {
     // Se não existir a sessão
     // Exibe a página de login para o usuário
-    res.render("login");
+    res.redirect("/login");
   }
 }
 
